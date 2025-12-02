@@ -21,7 +21,7 @@ document.getElementById("userForm").addEventListener("submit", async function (e
   const result = await response.json();
   document.getElementById("message").innerText = result.message;
 
-  fetch("https://your-backend-url.onrender.com/register", {
+  fetch("https://https://my-back-end-m7qk.onrender.com//register", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -30,4 +30,5 @@ document.getElementById("userForm").addEventListener("submit", async function (e
 });
 
 });
+
 

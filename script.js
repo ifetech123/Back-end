@@ -1,35 +1,28 @@
-
 document.getElementById("userForm").addEventListener("submit", async function (e) {
   e.preventDefault();
 
   const formData = {
-    firstName: this.firstName.value,
-    lastName: this.lastName.value,
-    age: this.age.value,
-    email: this.email.value,
-    password: this.password.value,
-    phone: this.phone.value,
-    address: this.address.value
+    firstName: document.querySelector("input[name='firstName']").value,
+    lastName: document.querySelector("input[name='lastName']").value,
+    age: document.querySelector("input[name='age']").value,
+    email: document.querySelector("input[name='email']").value,
+    password: document.querySelector("input[name='password']").value,
+    phone: document.querySelector("input[name='phone']").value,
+    address: document.querySelector("input[name='address']").value,
   };
 
-  const response = await fetch("https://my-back-end-m7qk.onrender.com//register", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(formData)
-  });
+  try {
+    const response = await fetch("https://my-back-end-m7qk.onrender.com/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
 
-  const result = await response.json();
-  document.getElementById("message").innerText = result.message;
-
-  fetch("https://https://my-back-end-m7qk.onrender.com//register", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(formData),
+    const result = await response.json();
+    document.getElementById("message").textContent = result.message || "Success!";
+  } catch (err) {
+    document.getElementById("message").textContent = "Error submitting form.";
+  }
 });
-
-});
-
-
-
